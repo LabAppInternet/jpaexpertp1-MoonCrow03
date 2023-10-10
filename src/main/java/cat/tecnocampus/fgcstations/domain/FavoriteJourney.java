@@ -1,16 +1,23 @@
 package cat.tecnocampus.fgcstations.domain;
 
+import jakarta.persistence.*;
+
 import java.util.List;
 
+@Entity
+@Table(name = "favorite_journey")
 public class FavoriteJourney {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
+
+    @OneToMany(mappedBy = "favoriteJourney", cascade = CascadeType.ALL) // Difference of FetchType Types
     private List<DayTimeStart> startList;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Journey journey;
 
-
-    public FavoriteJourney() {
-    }
+    public FavoriteJourney() {}
 
     public String getId() {
         return id;

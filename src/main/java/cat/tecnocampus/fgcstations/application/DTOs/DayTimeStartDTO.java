@@ -1,9 +1,10 @@
 package cat.tecnocampus.fgcstations.application.DTOs;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 
-public class DayTimeStartDTO {
 
+public class DayTimeStartDTO {
     @Pattern(regexp = "^(Sunday|Monday|Tuesday|Wednesday|Thurday|Friday|Saturday)$",
     message = "Day of the week should be a week day name beginning in capital letter")
     private String dayOfWeek;

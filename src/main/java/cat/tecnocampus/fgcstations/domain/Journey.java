@@ -1,14 +1,23 @@
 package cat.tecnocampus.fgcstations.domain;
-
-
 import cat.tecnocampus.fgcstations.domain.exceptions.SameOriginDestinationException;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
+@Entity
+@Table(name = "journey")
 public class Journey {
-
+    @Id
     private String id;
 
+    @NotEmpty
+    @ManyToOne(fetch = FetchType.LAZY)
     private Station origin;
+
+    @NotEmpty
+    @ManyToOne(fetch = FetchType.LAZY)
     private Station destination;
+
+    public Journey() {}
 
     public Journey(Station origin, Station destination, String id) {
         if (origin.sameStation(destination)) {

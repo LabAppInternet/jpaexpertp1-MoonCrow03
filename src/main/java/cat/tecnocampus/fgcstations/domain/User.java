@@ -1,17 +1,30 @@
 package cat.tecnocampus.fgcstations.domain;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "userlab",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "username"),
+                @UniqueConstraint(columnNames = "email")
+        })
 public class User implements Serializable {
-    private String username;
 
+    @Size(min = 3, max = 255)
+    @Id
+    private String username;
     private String name;
     private String secondName;
-
+    @Email
     private String email;
 
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
     public List<FavoriteJourney> favoriteJourneyList;
 
     public User() {

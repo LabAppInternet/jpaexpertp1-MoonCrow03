@@ -1,24 +1,32 @@
 package cat.tecnocampus.fgcstations.domain;
 
-import java.util.List;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "friend")
 public class Friends {
-    private String username;
-    private List<String> friends;
+    @Id
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
-    public String getUsername() {
-        return username;
+    @Id
+    private String friends;
+
+    public Friends(){}
+
+    public User getUser() {
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(User username) {
+        this.user = username;
     }
 
-    public List<String> getFriends() {
+    public String getFriends() {
         return friends;
     }
 
-    public void setFriends(List<String> friends) {
+    public void setFriends(String friends) {
         this.friends = friends;
     }
 }

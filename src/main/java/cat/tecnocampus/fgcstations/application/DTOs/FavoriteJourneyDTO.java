@@ -6,7 +6,6 @@ import jakarta.validation.constraints.Size;
 import java.util.List;
 
 public class FavoriteJourneyDTO {
-
     @Size(min=4, max=25, message = "Size must be between 4 and 25")
     private String origin;
 

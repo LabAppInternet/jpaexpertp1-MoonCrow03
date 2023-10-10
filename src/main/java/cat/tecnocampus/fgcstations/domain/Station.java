@@ -1,10 +1,16 @@
 package cat.tecnocampus.fgcstations.domain;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
+
+@Entity
+@Table(name = "station")
 public class Station {
-
+    @Size(min = 4, max = 25)
+    @Id
     private String nom;
-
     private String longitud;
+    @Id
     private String latitud;
 
     public Station() {
